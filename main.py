@@ -62,18 +62,20 @@ def salvar_vaga(vaga):
         writer.writerow([vaga["titulo"], vaga["link"]])
 
 def executar():
+    print("🔍 Buscando vagas...")
+
     vagas = buscar_vagas()
 
+    print(f"📊 {len(vagas)} vagas encontradas")
+
+    if len(vagas) == 0:
+        print("❌ Nenhuma vaga encontrada")
+        return
+
     for vaga in vagas:
-        analise = analisar_vaga(vaga["descricao"])
-
-        print("Vaga:", vaga["titulo"])
-        print("Link:", vaga["link"])
-
-        salvar_vaga(vaga)
-        print("Salva com sucesso")
+        print("📌 Vaga:", vaga["titulo"])
+        print("🔗 Link:", vaga["link"])
         print("-" * 40)
-
 if __name__ == "__main__":
     while True:
         executar()
